@@ -1,101 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bachelor Point Season 5</title>
+  <title>ঢাকার স্বর্ণের বাজারের মূল্য তালিকা</title>
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0B0B0F" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0B0B0F" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            base: { 50: '#f6f7f9', 100: '#ECEEF2', 900: '#0B0B0F' }
+          },
+          boxShadow: {
+            soft: '0 6px 30px rgba(0,0,0,.12)',
+            ring: 'inset 0 0 0 1px rgba(255,255,255,.06)'
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 0.5rem;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .video-skeleton {
-      background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
-      background-size: 200% 100%;
-      animation: pulse 1.5s infinite linear;
-      border-radius: 0.5rem;
-      aspect-ratio: 16 / 9;
-    }
-
-    @keyframes pulse {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
+    .glass { backdrop-filter: saturate(120%) blur(12px); }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+    @media (max-width: 640px){
+      table.rtable thead{ display:none; }
+      table.rtable tr{ display:grid; grid-template-columns: 1fr; gap:.25rem; margin-bottom:.75rem; }
+      table.rtable td{ display:flex; justify-content:space-between; align-items:center; padding:.625rem .75rem; }
+      table.rtable td::before{ content: attr(data-label); font-weight:600; color: #a3a3a3; margin-right: .75rem; }
+      table.rtable td[data-label="মূল্য (BDT)"]{ border-top:1px dashed rgba(255,255,255,.12); }
     }
   </style>
 </head>
-<body class="bg-white text-gray-800 font-sans antialiased">
-
-  <!-- 🟡 Top Banner Ad (728x90) -->
-  <div class="w-full flex justify-center py-4 bg-gray-50 border-b">
-    <script type="text/javascript">
-      atOptions = {
-        'key': 'fe21deca61645de8e520af77e5bba940',
-        'format': 'iframe',
-        'height': 90,
-        'width': 728,
-        'params': {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/fe21deca61645de8e520af77e5bba940/invoke.js"></script>
+<body class="bg-base-900 text-gray-100 antialiased selection:bg-amber-400/40">
+  <div class="fixed inset-0 -z-10">
+    <div class="absolute inset-0 bg-[radial-gradient(1200px_600px_at_10%_-10%,rgba(251,191,36,.15),transparent),radial-gradient(900px_500px_at_100%_10%,rgba(168,85,247,.12),transparent)]"></div>
   </div>
 
-  <!-- 🔵 Main Content -->
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <h1 class="text-3xl md:text-4xl font-bold text-center mb-10">
-      Bachelor Point Season 5
-    </h1>
+  <header class="max-w-5xl mx-auto px-4 pt-10 pb-6 text-center">
+    <h1 class="text-[clamp(22px,3vw,34px)] font-extrabold tracking-[-0.02em] text-white drop-shadow">ঢাকার স্বর্ণের বাজারের মূল্য তালিকা</h1>
+    <p class="text-sm text-gray-400 mt-2">সকল স্ক্রিনে অপ্টিমাইজড · রিয়েলটাইম প্রাইস আপডেট</p>
+  </header>
 
-    <!-- 🎬 Main Video -->
-    <div class="video-container shadow-lg mb-8">
-      <iframe 
-        src="https://player.vimeo.com/video/1091734895" 
-        frameborder="0" 
-        allow="autoplay; fullscreen; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
+  <main class="max-w-5xl mx-auto px-4 pb-20 space-y-8">
+    <!-- CARD 1: আজকের স্বর্ণের দাম -->
+    <section class="relative rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg md:text-xl font-semibold">আজকের স্বর্ণের দাম</h2>
+        <span id="status1" class="text-xs px-2 py-1 rounded-full bg-neutral-800">Connecting…</span>
+      </div>
+      <div class="overflow-hidden rounded-xl border border-white/5">
+        <table class="rtable min-w-full text-[15px]">
+          <thead class="bg-amber-500/95 text-black">
+            <tr>
+              <th class="px-4 py-3 text-left">স্বর্ণ</th>
+              <th class="px-4 py-3 text-left">বিবরণ</th>
+              <th class="px-4 py-3 text-left">মূল্য (BDT)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 bg-neutral-900/30">
+            <tr>
+              <td class="px-4 py-3" data-label="স্বর্ণ">২৪ ক্যারেট</td>
+              <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি বিস্কুট (99.99%)</td>
+              <td class="px-4 py-3 font-semibold text-amber-300" data-label="মূল্য (BDT)"><span data-key="price_24k_biscuit_bhori">৳ —</span></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3" data-label="স্বর্ণ">২৪ ক্যারেট</td>
+              <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি পাশা স্বর্ণ (99.50%)</td>
+              <td class="px-4 py-3 font-semibold text-amber-300" data-label="মূল্য (BDT)"><span data-key="price_24k_pasha_bhori">৳ —</span></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3" data-label="স্বর্ণ">২৪ ক্যারেট</td>
+              <td class="px-4 py-3" data-label="বিবরণ">প্রতি গ্রাম বিস্কুট (99.99%)</td>
+              <td class="px-4 py-3 font-semibold text-amber-300" data-label="মূল্য (BDT)"><span data-key="price_24k_biscuit_gram">৳ —</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-rose-300/90 text-sm">সর্বশেষ আপডেট: <span id="updatedAt1">—</span></p>
+    </section>
 
-    <!-- 🟣 Mid Ad (468x60) -->
-    <div class="flex justify-center mb-10">
-      <script type="text/javascript">
-        atOptions = {
-          'key': '6895282d35230836657b2ac4b6b9f561',
-          'format': 'iframe',
-          'height': 60,
-          'width': 468,
-          'params': {}
-        };
-      </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/6895282d35230836657b2ac4b6b9f561/invoke.js"></script>
-    </div>
+    <!-- CARD 2: পুরাতন গহনা ক্রয় বিক্রয় -->
+    <section class="relative rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg md:text-xl font-semibold">পুরাতন গহনা ক্রয় বিক্রয়</h2>
+      </div>
+      <div class="overflow-hidden rounded-xl border border-white/5">
+        <table class="rtable min-w-full text-[15px]">
+          <thead class="bg-amber-500/95 text-black">
+            <tr>
+              <th class="px-4 py-3 text-left">স্বর্ণ</th>
+              <th class="px-4 py-3 text-left">বিবরণ</th>
+              <th class="px-4 py-3 text-left">মূল্য (BDT)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 bg-neutral-900/30">
+            <tr>
+              <td class="px-4 py-3" data-label="স্বর্ণ">২২ ক্যারেট</td>
+              <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি গহনা (91.67%)</td>
+              <td class="px-4 py-3 font-semibold" data-label="মূল্য (BDT)"><span data-key="price_old_22k_bhori">৳ —</span></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3" data-label="স্বর্ণ">২১ ক্যারেট</td>
+              <td class="px-4 py-3" data-label="বিবরণ">প্রতি ভরি গহনা (87.50%)</td>
+              <td class="px-4 py-3 font-semibold" data-label="মূল্য (BDT)"><span data-key="price_old_21k_bhori">৳ —</span></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3" data-label="স্বর্ণ">২২ ক্যারেট</td>
+              <td class="px-4 py-3" data-label="বিবরণ">প্রতি গ্রাম গহনা (91.67%)</td>
+              <td class="px-4 py-3 font-semibold" data-label="মূল্য (BDT)"><span data-key="price_old_22k_gram">৳ —</span></td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3" data-label="স্বর্ণ">২১ ক্যারেট</td>
+              <td class="px-4 py-3" data-label="বিবরণ">প্রতি গ্রাম গহনা (87.50%)</td>
+              <td class="px-4 py-3 font-semibold" data-label="মূল্য (BDT)"><span data-key="price_old_21k_gram">৳ —</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-rose-300/90 text-sm">সর্বশেষ আপডেট: <span id="updatedAtOld">—</span></p>
+    </section>
 
-    <!-- 🎥 Loading Demo Slots -->
-    <h2 class="text-xl font-semibold mb-6">Upcoming video</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="video-skeleton"></div>
-      <div class="video-skeleton"></div>
-      <div class="video-skeleton"></div>
-      <div class="video-skeleton"></div>
-      <div class="video-skeleton"></div>
-      <div class="video-skeleton"></div>
-      <div class="video-skeleton"></div>
-      <div class="video-skeleton"></div>
-      <div class="video-skeleton"></div>
-      <div class="video-skeleton"></div>
-    </div>
-  </div>
+    <!-- CARD 3: নতুন গহনা ক্রয় -->
+    <section class="relative rounded-2xl p-5 md:p-7 bg-neutral-900/70 glass shadow-soft shadow-ring">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg md:text-xl font-semibold">নতুন গহনা ক্রয়</h2>
+        <span id="status2" class="text-xs px-2 py-1 rounded-full bg-neutral-800">Connecting…</span>
+      </div>
+      <div class="overflow-hidden rounded-xl border border-white/5">
+        <table class="rtable min-w-full text-[15px]">
+          <thead class="bg-amber-500/95 text-black">
+            <tr>
+              <th class="px-4 py-3 text-left">নতুন গহনা ক্রয়</th>
+              <th class="px-4 py-3 text-left">বিবরণ</th>
+              <th class="px-4 py-3 text-left">মূল্য (BDT)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 bg-neutral-900/30">
+            <tr>
+              <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২২ ক্যারেট প্রতি ভরি</td>
+              <td class="px-4 py-3" data-label="বিবরণ">গহনা (৯১.৬৭%)</td>
+              <td class="px-4 py-3 font-semibold" data-label="মূল্য (BDT)"><span data-key="price_new_22k_bhori">৳ —</span> টাকা/ভরি</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২১ ক্যারেট প্রতি ভরি</td>
+              <td class="px-4 py-3" data-label="বিবরণ">গহনা (৮৭.৫০%)</td>
+              <td class="px-4 py-3 font-semibold" data-label="মূল্য (BDT)"><span data-key="price_new_21k_bhori">৳ —</span> টাকা/ভরি</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২২ ক্যারেট প্রতি গ্রাম</td>
+              <td class="px-4 py-3" data-label="বিবরণ">গহনা (৯১.৬৭%)</td>
+              <td class="px-4 py-3 font-semibold" data-label="মূল্য (BDT)"><span data-key="price_new_22k_gram">৳ —</span> টাকা/গ্রাম</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3" data-label="নতুন গহনা ক্রয়">২১ ক্যারেট প্রতি গ্রাম</td>
+              <td class="px-4 py-3" data-label="বিবরণ">গহনা (৮৭.৫০%)</td>
+              <td class="px-4 py-3 font-semibold" data-label="মূল্য (BDT)"><span data-key="price_new_21k_gram">৳ —</span> টাকা/গ্রাম</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-rose-300/90 text-sm">সর্বশেষ আপডেট: <span id="updatedAt2">—</span></p>
+    </section>
+  </main>
+
+  <script type="module">
+    const firebaseConfig = { apiKey:"YOUR_API_KEY",authDomain:"YOUR_PROJECT_ID.firebaseapp.com",projectId:"YOUR_PROJECT_ID",storageBucket:"YOUR_PROJECT_ID.appspot.com",messagingSenderId:"YOUR_SENDER_ID",appId:"YOUR_APP_ID" };
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, onSnapshot, doc, onSnapshot as onDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    const app = initializeApp(firebaseConfig); const db = getFirestore(app);
+    const moneyFmt = new Intl.NumberFormat('bn-BD',{ style:'currency', currency:'BDT', maximumFractionDigits:0 });
+    function setLiveBadge(el,ok){ if(!el)return; el.textContent=ok?'Live':'Error'; el.className='text-xs px-2 py-1 rounded-full '+(ok?'bg-green-200 text-green-900':'bg-red-200 text-red-900'); }
+    function setUpdated(el,ts){ try{ const d=ts?.toDate?ts.toDate():(ts instanceof Date?ts:null); el.textContent=d?d.toLocaleString('bn-BD',{hour12:false}):'—'; }catch{ el.textContent='—'; } }
+    const status1=document.getElementById('status1'); const status2=document.getElementById('status2'); const updatedAt1=document.getElementById('updatedAt1'); const updatedAt2=document.getElementById('updatedAt2'); const updatedAtOld=document.getElementById('updatedAtOld');
+    const els=Array.from(document.querySelectorAll('[data-key]')).reduce((acc,span)=>{acc[span.dataset.key]=span;return acc;},{});
+    onSnapshot(collection(db,'prices'),(snap)=>{ setLiveBadge(status1,true); setLiveBadge(status2,true); snap.docs.forEach(d=>{ const data=d.data()||{}; const key=data.key||d.id; const el=els[key]; if(el&&typeof data.price==='number'){ el.textContent=moneyFmt.format(data.price).replace('৳\u00A0','৳'); } }); },(err)=>{console.error(err); setLiveBadge(status1,false); setLiveBadge(status2,false); });
+    onDoc(doc(db,'meta','site'),(d)=>{ const data=d.data(); setUpdated(updatedAt1,data?.updatedAt); setUpdated(updatedAt2,data?.updatedAt); setUpdated(updatedAtOld,data?.updatedAt); });
+  </script>
 </body>
 </html>
